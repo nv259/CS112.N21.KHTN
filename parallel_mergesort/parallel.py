@@ -16,35 +16,27 @@ def merge(arr, low, mid, high):
     if high <= low:
         return
 
-    # Initialize
-    left_part = arr[low:mid + 1].copy()
-    right_part = arr[mid + 1:high + 1].copy()
+    result = []
+    i = low
+    j = mid + 1
 
-    left_size, right_size = len(left_part), len(right_part)
-    i = j = 0
-    cc = low
-
-    # O(left_size + right_size) complexity algorithm
-    while i < left_size and j < right_size:
-        if left_part[i] <= right_part[j]:
-            arr[cc] = left_part[i]
-            i += 1
+    while i <= mid and j <= high:
+        if arr[i] < arr[j]:
+            result.append(arr[i])
+            i = i + 1
         else:
-            arr[cc] = right_part[j]
-            j += 1
-        cc += 1
+            result.append(arr[j])
+            j = j + 1
 
-    while i < left_size:
-        arr[cc] = left_part[i]
-        i += 1
-        cc += 1
+    while i <= mid:
+        result.append(arr[i])
+        i = i + 1
 
-    while j < right_size:
-        arr[cc] = right_part[j]
-        j += 1
-        cc += 1
+    while j <= high:
+        result.append(arr[j])
+        j = j + 1
 
-    return arr
+    return result
 
 def merge_sort(arr, low, high, q, step):
     if low >= high:
@@ -66,7 +58,7 @@ def merge_sort(arr, low, high, q, step):
     merge_sort(arr, low, mid, q, step + 1)
     merge_sort(arr, mid + 1, high, q, step + 1)
 
-    arr = merge(arr, low, mid, high)
+    arr[low:high + 1] = merge(arr, low, mid, high)
     if step == 0:
         for i in range(low, high + 1):
             q.put(arr[i])
@@ -102,8 +94,8 @@ def parallel_mergesort():
     my_list[(i + 1) * distance:n] = convert_to_array(q[NUM_PROCESS - 1])
 
     for i in range(1, NUM_PROCESS - 1):
-        my_list = merge(arr=my_list, low=0, mid=i*distance - 1, high=(i+1)*distance - 1)
-    my_list = merge(arr=my_list, low=0, mid=(NUM_PROCESS - 1)*distance - 1, high=n-1)
+        my_list[0:(i + 1) * distance] = merge(arr=my_list, low=0, mid=i*distance - 1, high=(i+1)*distance - 1)
+    my_list[0:n] = merge(arr=my_list, low=0, mid=(NUM_PROCESS - 1)*distance - 1, high=n-1)
 
 
 if __name__ == '__main__':
