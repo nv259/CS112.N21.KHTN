@@ -1,7 +1,6 @@
 # Global interpreter lock -> 0 multi-threads but multi-processes
 import multiprocessing as mp
 import time
-import numpy as np
 
 
 # 4 cores
@@ -89,11 +88,13 @@ def parallel_mergesort():
         q.append(mp.Queue())
         p.append(mp.Process(target=merge_sort, args=(my_list, i * distance, (i + 1) * distance - 1, q[i], 0)))
         p[i].start()
-        p[i].join()
     q.append(mp.Queue())
     p.append(mp.Process(target=merge_sort, args=(my_list, (NUM_PROCESS - 1) * distance, n-1, q[NUM_PROCESS - 1], 0)))
     p[NUM_PROCESS - 1].start()
-    p[NUM_PROCESS - 1].join()
+
+    # Join all Processes
+    for i in range(NUM_PROCESS):
+        p[i].join()
 
     # merge results of all processes
     for i in range(NUM_PROCESS - 1):
@@ -107,14 +108,17 @@ def parallel_mergesort():
 
 if __name__ == '__main__':
     # Input
-    print('Parallel Merge Sort')
-    print("Enter array's length: ", end='')
-    n = int(input())
-    print("Enter array's element: ", end='')
+    # print('Parallel Merge Sort')
+    # print("Enter array's length: ", end='')
+    # n = int(input())
+    # print("Enter array's element: ", end='')
     # my_list = list(map(int, input().split()))
-    my_list = np.random()
+    with open('test.inp', 'r') as f:
+        my_list = list(map(int, f.read().split()))
+        n = len(my_list)
 
     # Parallel sort
+    global start
     start = time.time()
     parallel_mergesort()
     end = time.time()

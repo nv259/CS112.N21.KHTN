@@ -39,17 +39,21 @@ def merge_sort(arr):
 lst = []
 
 # Input
-try:
-    print('Merge Sort')
-    print("Enter array's element: ")
-    
-    while True:
-        lst.append(int(input()))
-except:
-    # Merge sort
-    start = time.time()
-    lst = merge_sort(lst)
-    end = time.time()
+# try:
+#     print('Merge Sort')
+#     print("Enter array's element: ")
+#
+#     while True:
+#         lst.append(int(input()))
+# except:
+with open('test.inp', 'r') as f:
+    lst = list(map(int, f.read().split()))
+    n = len(lst)
+
+# Merge sort
+start = time.time()
+lst = merge_sort(lst)
+end = time.time()
 
 
 # Result
