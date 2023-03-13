@@ -100,17 +100,18 @@ def parallel_mergesort():
 
 if __name__ == '__main__':
     # Input
-    # print('Parallel Merge Sort')
-    # print("Enter array's length: ", end='')
-    # n = int(input())
-    # print("Enter array's element: ", end='')
-    # my_list = list(map(int, input().split()))
-    with open('test.inp', 'r') as f:
-        my_list = list(map(int, f.read().split()))
-        n = len(my_list)
+    print('Parallel Merge Sort')
+    print("Enter array's length: ", end='')
+    n = int(input())
+    print("Enter array's element: ", end='')
+    my_list = list(map(int, input().split()))
+
+    # # Test
+    # with open('test.inp', 'r') as f:
+    #     my_list = list(map(int, f.read().split()))
+    #     n = len(my_list)
 
     # Parallel sort
-    global start
     start = time.time()
     parallel_mergesort()
     end = time.time()
