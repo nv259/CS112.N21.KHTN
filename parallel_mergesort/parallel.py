@@ -4,7 +4,7 @@ import time
 
 
 # 4 cores
-NUM_PROCESS = 4
+MAX_PROCESS = 4
 
 # Global variables
 n = 0
@@ -41,7 +41,7 @@ def merge(arr, low, mid, high):
 def merge_sort(arr, low, high, q, step):
     if low >= high:
         if step == 0 and low == high:
-            q.put(arr[low])
+            q.put([arr[low]])
         return
 
     if low == high - 1:
@@ -49,8 +49,7 @@ def merge_sort(arr, low, high, q, step):
             arr[low], arr[high] = arr[high], arr[low]
 
             if step == 0:
-                q.put(arr[low])
-                q.put(arr[high])
+                q.put(arr[low:high+1])
         return
 
     mid = (low + high) // 2
@@ -60,16 +59,11 @@ def merge_sort(arr, low, high, q, step):
 
     arr[low:high + 1] = merge(arr, low, mid, high)
     if step == 0:
-        for i in range(low, high + 1):
-            q.put(arr[i])
+        q.put(arr[low:high+1])
 
-def convert_to_array(queue):
-    arr = []
-    while queue.empty() is False:
-        arr.append(queue.get())
-    return arr
 
 def parallel_mergesort():
+    NUM_PROCESS = min(MAX_PROCESS,n)
     distance = n // NUM_PROCESS
     p = []
     q = []
@@ -84,14 +78,11 @@ def parallel_mergesort():
     p.append(mp.Process(target=merge_sort, args=(my_list, (NUM_PROCESS - 1) * distance, n-1, q[NUM_PROCESS - 1], 0)))
     p[NUM_PROCESS - 1].start()
 
-    # Join all Processes
-    for i in range(NUM_PROCESS):
-        p[i].join()
 
     # merge results of all processes
     for i in range(NUM_PROCESS - 1):
-        my_list[i * distance:(i + 1) * distance] = convert_to_array(q[i])
-    my_list[(i + 1) * distance:n] = convert_to_array(q[NUM_PROCESS - 1])
+        my_list[i * distance:(i + 1) * distance] = q[i].get()
+    my_list[(i + 1) * distance:n] = q[NUM_PROCESS - 1].get()
 
     for i in range(1, NUM_PROCESS - 1):
         my_list[0:(i + 1) * distance] = merge(arr=my_list, low=0, mid=i*distance - 1, high=(i+1)*distance - 1)
@@ -105,11 +96,11 @@ if __name__ == '__main__':
     n = int(input())
     print("Enter array's element: ", end='')
     my_list = list(map(int, input().split()))
-
+    
     # # Test
-    # with open('test.inp', 'r') as f:
-    #     my_list = list(map(int, f.read().split()))
-    #     n = len(my_list)
+    #with open('test.inp', 'r') as f:
+    #    my_list = list(map(int, f.read().split()))
+    #    n = len(my_list)
 
     # Parallel sort
     start = time.time()
