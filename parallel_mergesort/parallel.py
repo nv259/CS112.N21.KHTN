@@ -38,6 +38,26 @@ def merge(arr, low, mid, high):
 
     return result
 
+NUM_PROCESS
+def parallel_merge_sort(arr, low, high):
+    Split array into NUM_PROCESS subarrays (each contains about n // NUM_PROCESS elements)
+
+    Create NUM_PROCESS processes (each handles one subarray)
+
+    for process in processes:
+        process.start()
+
+    for process in processes:
+        process.join()
+
+    # Q is array of multiprocessing Queue (return array of each processes)
+    for q in Q:
+        result = merge(result, q)
+
+    return result
+end
+
+
 def merge_sort(arr, low, high, q, step):
     if low >= high:
         if step == 0 and low == high:
