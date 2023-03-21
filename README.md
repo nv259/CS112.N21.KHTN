@@ -1,6 +1,5 @@
 # CS112.N21.KHTN
 
----
 *Lecturer: Son Nguyen Thanh MCS*
 
 *Member 1: Quan Minh Vo - 21520093*
