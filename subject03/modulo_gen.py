@@ -47,7 +47,14 @@ def subtask1(start,end):
         q = randint(int(1e5))+1
         fi.write(str(q)+'\n')
 
-        for _ in range(q):
+        t = 1
+        a = int(1e9)
+        b = int(1e9)
+        c = int(1e9)
+        fi.write('1 '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+        for _ in range(q-1):
 
             t = 1
             a = randint(int(1e9))+1
@@ -67,7 +74,14 @@ def subtask2(start,end):
         q = randint(int(1e3))+1
         fi.write(str(q)+'\n')
 
-        for _ in range(q):
+        t = 2
+        a = int(1e4)
+        b = int(1e2)
+        c = int(1e2)
+        fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+        for _ in range(q-1):
 
             t = 2
             a = randint(int(1e4))+1
@@ -88,7 +102,14 @@ def subtask3(start,end):
         q = randint(int(1e5))+1
         fi.write(str(q)+'\n')
 
-        for _ in range(q):
+        t = randint(2)+1
+        a = int(1e9)
+        b = int(1e5)
+        c = int(1e5)
+        fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+        for _ in range(q-1):
 
             t = randint(2)+1
             a = randint(int(1e9))+1
@@ -109,7 +130,14 @@ def subtask4(start,end):
         q = randint(int(1e5))+1
         fi.write(str(q)+'\n')
 
-        for _ in range(q):
+        t = randint(2)+1
+        a = int(1e18)
+        b = int(1e12)
+        c = int(1e12)
+        fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+        for _ in range(q-1):
 
             t = randint(2)+1
             a = randint(np.longlong(1e18),dtype=np.longlong)+1

@@ -20,7 +20,12 @@ def generate(test_id):
 
     t = randint(200)+1
     fi.write(str(t)+'\n')
-    for _ in range(t):
+
+    #edge case
+    fi.write('1000 1000\n')
+    fo.write(str(solve(1000,1000)) + '\n')
+    
+    for _ in range(t-1):
         a = randint(1000)+1
         b = randint(1000)+1
         fi.write(str(a) + ' ' + str(b) + '\n')
