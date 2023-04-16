@@ -44,7 +44,7 @@ def subtask1(start,end):
     for test_id in range(start,end+1):
         fi,fo = makedir(test_id)
 
-        q = randint(int(1e5))+1
+        q = randint(int(1e5)-1)+2
         fi.write(str(q)+'\n')
 
         t = 1
@@ -54,7 +54,14 @@ def subtask1(start,end):
         fi.write('1 '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
         fo.write(str(solve(t,a,b,c))+'\n')
 
-        for _ in range(q-1):
+        t = 1
+        a = 1
+        b = 1
+        c = 1
+        fi.write('1 '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+        for _ in range(q-2):
 
             t = 1
             a = randint(int(1e9))+1
@@ -71,7 +78,7 @@ def subtask2(start,end):
     for test_id in range(start,end+1):
         fi,fo = makedir(test_id)
 
-        q = randint(int(1e3))+1
+        q = randint(int(1e3)-1)+2
         fi.write(str(q)+'\n')
 
         t = 2
@@ -81,7 +88,15 @@ def subtask2(start,end):
         fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
         fo.write(str(solve(t,a,b,c))+'\n')
 
-        for _ in range(q-1):
+        t = 2
+        a = 1
+        b = 1
+        c = 1
+        fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+
+        for _ in range(q-2):
 
             t = 2
             a = randint(int(1e4))+1
@@ -99,7 +114,7 @@ def subtask3(start,end):
     for test_id in range(start,end+1):
         fi,fo = makedir(test_id)
 
-        q = randint(int(1e5))+1
+        q = randint(int(1e5)-1)+2
         fi.write(str(q)+'\n')
 
         t = randint(2)+1
@@ -109,7 +124,16 @@ def subtask3(start,end):
         fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
         fo.write(str(solve(t,a,b,c))+'\n')
 
-        for _ in range(q-1):
+
+        t = randint(2)+1
+        a = 1
+        b = 1
+        c = 1
+        fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+
+        for _ in range(q-2):
 
             t = randint(2)+1
             a = randint(int(1e9))+1
@@ -127,7 +151,7 @@ def subtask4(start,end):
     for test_id in range(start,end+1):
         fi,fo = makedir(test_id)
 
-        q = randint(int(1e5))+1
+        q = randint(int(1e5)-1)+2
         fi.write(str(q)+'\n')
 
         t = randint(2)+1
@@ -137,7 +161,15 @@ def subtask4(start,end):
         fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
         fo.write(str(solve(t,a,b,c))+'\n')
 
-        for _ in range(q-1):
+
+        t = randint(2)+1
+        a = 1
+        b = 1
+        c = 1
+        fi.write(str(t)+' '+ str(a) +' '+ str(b) +' '+ str(c) +'\n')
+        fo.write(str(solve(t,a,b,c))+'\n')
+
+        for _ in range(q-2):
 
             t = randint(2)+1
             a = randint(np.longlong(1e18),dtype=np.longlong)+1

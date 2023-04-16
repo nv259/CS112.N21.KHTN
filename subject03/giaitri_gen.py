@@ -18,14 +18,17 @@ def generate(test_id):
     fi = open(TEST_DIR + "/test"+ test_id + "/giaitri.inp","w")
     fo = open(TEST_DIR + "/test"+ test_id + "/giaitri.out","w")
 
-    t = randint(200)+1
+    t = randint(200-1)+2
     fi.write(str(t)+'\n')
 
     #edge case
     fi.write('1000 1000\n')
     fo.write(str(solve(1000,1000)) + '\n')
+
+    fi.write('1 1\n')
+    fo.write(str(solve(1,1)) + '\n')
     
-    for _ in range(t-1):
+    for _ in range(t-2):
         a = randint(1000)+1
         b = randint(1000)+1
         fi.write(str(a) + ' ' + str(b) + '\n')
