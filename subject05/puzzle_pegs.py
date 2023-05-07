@@ -20,14 +20,14 @@ class Board():
         x, y = map(int, input('Enter location of the empty hole (e.g. x y): ').split())
         self.board[x][y] = -1
 
-    def curr_answer(self):
+    def show_curr_answer(self):
         for index in range(2, len(self.answer) - 1, 2):
             print(self.answer[index], '->', self.answer[index + 1])
 
     def solve(self):
         trace = np.array([[-1, -1], [-1, -1]])
         self.backtrack(self.board, 14, trace)
-        print(self.answer)
+        self.show_curr_answer()
 
     def backtrack(self, state, num_pegs, trace):
         global dx, dy
@@ -36,7 +36,6 @@ class Board():
         if num_pegs == 1:
             if len(self.answer) > len(trace):
                 self.answer = trace.copy()
-                self.curr_answer()
                 return
 
         # Otherwise, move the peg (x, y)
