@@ -2,7 +2,7 @@
 
 *Lecturer: Son Nguyen Thanh MCS*
 
-*Member 1: Quan Minh Vo - 21520093*
+*Leader 1: Quan Minh Vo - 21520093*
 
 *Member 2: Nhat Nguyen Viet - 21520378*
 
