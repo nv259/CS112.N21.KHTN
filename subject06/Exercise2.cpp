@@ -59,6 +59,7 @@ void dfs(node *p, string s)
     if (p->isleaf())
     {
         codeword[int(p->c)] = s;
+        cout << p->c << ' ' << s << '\n';
     }
     else
     {
@@ -99,21 +100,18 @@ void decode()
     node* p = root;
     for(char c:s)
     {
+        int val = c - '0';
+        if (p->child[val] != nullptr)
+            p = p->child[val];
+        else
+        {
+            cout << "Can't decode\n";
+            return;
+        }
         if (p->isleaf())
         {
             res += p->c;
             p = root;
-        }
-        else
-        {
-            int val = c - '0';
-            if (p->child[val] != nullptr)
-                p = p->child[val];
-            else
-            {
-                cout << "Can't decode\n";
-                return;
-            }
         }
     }
     cout << "Decoded string of '100010111001010' is: " <<  res << '\n';
