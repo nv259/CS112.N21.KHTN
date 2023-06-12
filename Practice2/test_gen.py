@@ -15,10 +15,17 @@ for test in range(50):
         wordList = []
 
         for i in range(m):
-            # Generate wordList[i]
-            k = random.randint(1, 20)
-            res = ''.join(random.choices(string.ascii_lowercase + string.digits, k=k))
-            wordList.append(str(res))
+            # ensure element is unique
+            while True:
+                # Generate wordList[i]
+                k = random.randint(1, 20)
+                
+                res = str(''.join(random.choices(string.ascii_lowercase, k=k)))  
+
+                if res not in wordList:
+                    break
+                
+            wordList.append(res)
 
         # Generate "True" string
         max_length = random.randint(1, 300)
@@ -36,3 +43,11 @@ for test in range(50):
 
     with open('./tests/out/' + str(test) + '.out', 'w') as f:
         f.write('true')
+
+# False tests
+for i in range(50, 100):
+    with open('./tests/inp/' + str(i) + '.inp', 'w') as f:
+        pass
+
+    with open('./tests/out/' + str(i) + '.out', 'w') as f:
+        f.write('false')
