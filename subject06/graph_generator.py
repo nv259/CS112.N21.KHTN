@@ -2,7 +2,7 @@ import networkx as nx
 import random
 import argparse
 
-"USAGE: python graph_generator.py -n #nodes -t type(0, 1, 2) -w maximum_weight_of_edges"
+"USAGE: python graph_generator.py -n #nodes -t type(1, 2, 3) -w maximum_weight_of_edges"
 
 
 def generate_connected_graph(n, type, max_weight):
@@ -10,6 +10,12 @@ def generate_connected_graph(n, type, max_weight):
     # Just some heuristics about sparse, normal and fully connected graph
     p = 1.0 if type == 3 else 0.6 if type == 2 else 0.2
 
+    # if n >= 1000 and type != 3:
+    #     p = 0.1 if type == 2 else 0.01
+    
+    if n == 100000 and type == 1:
+        p = 0.0002
+        
     # Generate random erdos renyi graph
     G = nx.erdos_renyi_graph(n, p, seed=21520378, directed=False)
 
