@@ -10,7 +10,7 @@ k: wordList[i].length
 # True tests
 def gen_tests(true_tests=True):
     for test in range(50):
-        with open('./tests/inp/' + str(test) + '.inp', 'w') as f:
+        with open('./tests/in/input' + str(test + 1) + '.txt', 'w') as f:
             # Generate wordList
             m = random.randint(1, 1000)
             wordList = []
@@ -45,7 +45,7 @@ def gen_tests(true_tests=True):
             for word in wordList:
                 f.write(f'{word}\n')
 
-        with open('./tests/out/' + str(test) + '.out', 'w') as f:
+        with open('./tests/out/output' + str(test + 1) + '.txt', 'w') as f:
             f.write('true')
 
 
@@ -57,11 +57,13 @@ def replace_random_characters(s, num_replacements):
     return s
 
 
+gen_tests(true_tests=True)
+
 # False tests
 for i in range(50, 100):
-    with open('./tests/inp/' + str(i) + '.inp', 'w') as f:
+    with open('./tests/in/input' + str(i + 1) + '.txt', 'w') as f:
         s, m, wordList = gen_tests(true_tests=False)
-        s = replace_random_characters(s, len(s) // 10)
+        s = replace_random_characters(s, len(s) // 2)
 
         # Write result to test
         f.write(f'{s}\n')
@@ -70,5 +72,5 @@ for i in range(50, 100):
         for word in wordList:
             f.write(f'{word}\n')
 
-    with open('./tests/out/' + str(i) + '.out', 'w') as f:
+    with open('./tests/out/output' + str(i + 1) + '.txt', 'w') as f:
         f.write('false')
